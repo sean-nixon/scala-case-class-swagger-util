@@ -1,0 +1,126 @@
+{
+    "Order": {
+        "properties": [
+            {
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            {
+                "preorderId": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            {
+                "dchId": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            {
+                "customerId": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            {
+                "clientApp": {
+                    "type": "string"
+                }
+            },
+            {
+                "fiberPromoCode": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            {
+                "csRepId": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            {
+                "transactionToken": {
+                    "type": "string"
+                }
+            },
+            {
+                "orderHash": {
+                    "type": "string"
+                }
+            },
+            {
+                "installDateTime": {
+                    "type": "string"
+                }
+            },
+            {
+                "eSign": {
+                    "type": "boolean"
+                }
+            },
+            {
+                "workflowVersion": {
+                    "type": "string"
+                }
+            },
+            {
+                "accountInformation": {
+                    "$ref": "#/definitions/AccountInformation"
+                }
+            },
+            {
+                "subscriptionInformation": {
+                    "$ref": "#/definitions/SubscriptionInformation"
+                }
+            },
+            {
+                "pendingIssues": {
+                    "items": {
+                        "$ref": "#/definitions/LabelValue"
+                    },
+                    "type": "array"
+                }
+            },
+            {
+                "provisioningDetails": {
+                    "items": {
+                        "$ref": "#/definitions/ProvisioningDetail"
+                    },
+                    "type": "array"
+                }
+            },
+            {
+                "agreementFormData": {
+                    "$ref": "#/definitions/AgreementFormData"
+                }
+            },
+            {
+                "notes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            {
+                "cpniPin": {
+                    "type": "string"
+                }
+            }
+        ],
+        "required": [
+            "eSign",
+            "workflowVersion",
+            "accountInformation",
+            "subscriptionInformation",
+            "pendingIssues",
+            "provisioningDetails",
+            "notes"
+        ],
+        "type": "object"
+    }
+}
