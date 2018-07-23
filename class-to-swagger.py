@@ -167,7 +167,7 @@ def to_serializable(val):
 @to_serializable.register(SwaggerProperty)
 @to_serializable.register(SwaggerDoc)
 def ts_swagger(obj):
-    """Override json serialization for PropertyType classses"""
+    """Override json serialization for Swagger-related classses"""
     return obj.to_swagger_dict()
 
 def is_simple_type(s: str):
@@ -225,9 +225,7 @@ def to_property_type(typeString: str):
     superType = extract_super_type(typeString)
     subType = typeString
 
-    print('extract_super_type returned: [{}]'.format(superType))
     required = True
-
     if superType is not None:
         if superType == 'Option':
             required = False
@@ -286,10 +284,8 @@ def create_swagger_doc(case_class_string):
 def main():
     case_classes_strings = get_class_strings_from_file()
     for case_class_string in case_classes_strings:
-        print("Iteration")
         case_class_doc = create_swagger_doc(case_class_string)
         with open('output/{}_output_swagger.json'.format(case_class_doc.name), 'w') as out_file:
-            #out_file.write(json.dumps(jsonObj, sort_keys = True, indent = 4))
             out_file.write(json.dumps(case_class_doc, default=to_serializable, sort_keys=True, indent=SWAGGER_INDENT))
 
 if __name__ == '__main__':
