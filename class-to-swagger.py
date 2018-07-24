@@ -121,9 +121,7 @@ class SwaggerProperty:
         return pp.pformat(self.to_swagger_dict())
     
     def to_swagger_dict(self):
-        rep = {
-            self.property_name: self.propertyType
-        }
+        rep = self.propertyType
         return rep
 
 
@@ -150,8 +148,10 @@ class SwaggerDoc:
         rep[self.name] = {
             'type': "object",
             'required': self.requiredProperties,
-            'properties': self.properties
+            'properties': {}
         }
+        for prop in self.properties:
+            rep[self.name]['properties'][prop.property_name] = prop.propertyType
         return rep
 
 @singledispatch
@@ -237,7 +237,7 @@ def to_property_type(typeString: str):
     elif is_simple_type(subType): # Base case
         return SimplePropertyType(subType, required = required)
     elif is_number_type(subType):
-        return NumberPropertyType(subType)
+        return NumberPropertyType(subType, required = required)
     else:
         return ReferencePropertyType(subType, required = required) # Default is Reference Type if no other type is found
 
