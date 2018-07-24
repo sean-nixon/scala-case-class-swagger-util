@@ -1,0 +1,89 @@
+{
+    "Order": {
+        "properties": {
+            "accountInformation": {
+                "$ref": "#/definitions/AccountInformation"
+            },
+            "agreementFormData": {
+                "$ref": "#/definitions/AgreementFormData"
+            },
+            "clientApp": {
+                "type": "string"
+            },
+            "cpniPin": {
+                "type": "string"
+            },
+            "csRepId": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "customerId": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "dchId": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "eSign": {
+                "type": "boolean"
+            },
+            "fiberPromoCode": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "id": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "installDateTime": {
+                "type": "string"
+            },
+            "notes": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "orderHash": {
+                "type": "string"
+            },
+            "pendingIssues": {
+                "items": {
+                    "$ref": "#/definitions/LabelValue"
+                },
+                "type": "array"
+            },
+            "preorderId": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "provisioningDetails": {
+                "items": {
+                    "$ref": "#/definitions/ProvisioningDetail"
+                },
+                "type": "array"
+            },
+            "subscriptionInformation": {
+                "$ref": "#/definitions/SubscriptionInformation"
+            },
+            "transactionToken": {
+                "type": "string"
+            },
+            "workflowVersion": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "customerId",
+            "eSign",
+            "workflowVersion",
+            "accountInformation",
+            "subscriptionInformation",
+            "pendingIssues",
+            "provisioningDetails",
+            "notes"
+        ],
+        "type": "object"
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "SubscriptionInformation": {
+        "properties": {
+            "addressInformation": {
+                "$ref": "#/definitions/AddressInformation"
+            },
+            "neighborhoodInformation": {
+                "$ref": "#/definitions/NeighborhoodInformation"
+            },
+            "newSubscription": {
+                "type": "boolean"
+            },
+            "packageName": {
+                "type": "string"
+            },
+            "subscriptionActions": {
+                "items": {
+                    "$ref": "#/definitions/Action"
+                },
+                "type": "array"
+            },
+            "subscriptionGenerated": {
+                "type": "boolean"
+            },
+            "subscriptionId": {
+                "format": "int64",
+                "type": "integer"
+            }
+        },
+        "required": [
+            "subscriptionGenerated",
+            "newSubscription",
+            "packageName",
+            "neighborhoodInformation",
+            "addressInformation",
+            "subscriptionActions",
+            "subscriptionId"
+        ],
+        "type": "object"
+    }
+}

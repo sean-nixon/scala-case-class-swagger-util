@@ -1,0 +1,22 @@
+case class Order(
+                  id: Option[Long],
+                  preorderId: Option[Long],
+                  dchId: Option[Long],
+                  customerId: Long,
+                  clientApp: Option[String],
+                  fiberPromoCode: Option[Long],
+                  csRepId: Option[Long],
+                  transactionToken: Option[String],
+                  orderHash: Option[String] = None,
+                  installDateTime: Option[String] = None,
+                  eSign: Boolean,
+                  workflowVersion: String,
+                  accountInformation: AccountInformation,
+                  subscriptionInformation: SubscriptionInformation,
+                  pendingIssues: List[LabelValue] = Nil,
+                  provisioningDetails: List[ProvisioningDetail] = Nil,
+                  agreementFormData: Option[AgreementFormData],
+                  notes: List[String] = Nil,
+                  cpniPin: Option[String] = None
+
+)

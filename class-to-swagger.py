@@ -217,6 +217,15 @@ def extract_sub_type(s: str):
     else:
         return match.group(1)
 
+def extract_params_list(s: str):
+    """ Takes a case class string and returns the class name and internal parameters
+    """
+    match = re.search(r'\((.*)\)$', s)
+    if match is None:
+        print('[ERROR]: Valid class definition not found for string\n{}'.format(s))
+        raise Exception("Invalid input: Unable to parse class")
+    else:
+        return match.group(1)
 
 def to_property_type(typeString: str):
     """ Takes a type string and parses it to return the appropriate PropertyType
@@ -256,6 +265,7 @@ def get_class_strings_from_file():
     
     class_strings = contents.split("case class")
     split_contents = ["".join(item.split()) for item in class_strings]
+    print(split_contents)
     split_contents.remove('') # Remove extraneous empty string caused by above action
     return split_contents
 
@@ -264,19 +274,20 @@ def create_swagger_doc(case_class_string):
         class name and parameters and converting the parameters to the appropriate sub-class of
         ParameterType to ensure correct serialization
     """
-    split_contents = re.split(r'[(,)]', case_class_string)
-    split_contents.remove('')
-    className = split_contents[0]
-    del split_contents[0]
-    result = SwaggerDoc(className)
+    class_name = case_class_string.split("(")[0]
+    print("Processing class: {}".format(class_name))
 
-    for parameter in split_contents:
+    param_string = extract_params_list(case_class_string)
+    print(param_string)
+    param_list = param_string.split(",")
+    result = SwaggerDoc(class_name)
+    for parameter in param_list:
         parameter_without_defaults = re.sub(r'=.*', '', parameter)
         split_parameter = parameter_without_defaults.split(':')
         name = split_parameter[0]
         typeName = split_parameter[1]
         propType = to_property_type(typeName)
-        print('Adding property {} with type {}'.format(name, propType))
+        print('Adding property {} with details {}'.format(name, propType))
         result.addProperty(SwaggerProperty(name, propType, propType.required))
 
     return result

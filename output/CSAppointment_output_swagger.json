@@ -1,0 +1,49 @@
+{
+    "CSAppointment": {
+        "properties": {
+            "accountId": {
+                "type": "string"
+            },
+            "appointmentId": {
+                "type": "string"
+            },
+            "appointmentTimestamp": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "appointmentType": {
+                "type": "string"
+            },
+            "confirmationNumber": {
+                "type": "string"
+            },
+            "installationOption": {
+                "type": "string"
+            },
+            "isCancel": {
+                "type": "boolean"
+            },
+            "jiraId": {
+                "type": "string"
+            },
+            "orderNumber": {
+                "type": "string"
+            },
+            "rep": {
+                "type": "string"
+            },
+            "scheduleDate": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "scheduleDuration": {
+                "format": "int64",
+                "type": "integer"
+            }
+        },
+        "required": [
+            "appointmentType"
+        ],
+        "type": "object"
+    }
+}
